@@ -15,4 +15,4 @@
         rsync_opts:
           - "--exclude=.git"
           - "--exclude=README.md"
-      delegate_to: "{{ inventory_hostname }}"
+        recursive: yes

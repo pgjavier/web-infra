@@ -6,3 +6,4 @@ packages:
   - java-1.8.0-openjdk
 base_directories:
   - /opt/jenkins
+  - /home/centos/.aws

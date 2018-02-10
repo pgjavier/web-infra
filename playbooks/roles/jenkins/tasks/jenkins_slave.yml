@@ -1,11 +1,30 @@
 ---
-- name: Prepare jenkins tmp directory
+- name: Install prerequisites pip
+  easy_install:
+    name: pip
+
+- name: Install prerequisites boto
+  pip:
+    name: boto
+    state: present
+
+- name: Prepare jenkins  directores
   file:
-    path: "{{ base_directories }}"
+    path: "{{ item }}"
     state: directory
     owner: "{{ aws_user }}"
     group: "{{ aws_user }}"
     mode: 0770
+  with_items:
+    - "{{ base_directories }}"
+
+- name: Prepare aws credentials file
+  copy:
+    src: "credentials"
+    dest: "/home/centos/.aws/credentials"
+    owner: "{{ aws_user }}"
+    group: "{{ aws_user }}"
+    mode: 0600
 
 - name: Prepare jenkins ssh directory
   file:
