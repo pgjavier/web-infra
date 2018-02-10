@@ -1,0 +1,12 @@
+---
+- name: deployment of website
+  hosts: tag_Name_frontend
+  remote_user: "{{ aws_user }}"
+  become: true
+  serial: "50%"
+
+  roles:
+    - deployment
+
+  tags:
+    - deployment

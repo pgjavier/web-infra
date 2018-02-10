@@ -1,0 +1,32 @@
+---
+- name: Prepare jenkins tmp directory
+  file:
+    path: "{{ base_directories }}"
+    state: directory
+    owner: "{{ aws_user }}"
+    group: "{{ aws_user }}"
+    mode: 0770
+
+- name: Prepare jenkins ssh directory
+  file:
+    path: "/opt/jenkins/.ssh"
+    state: directory
+    owner: "{{ aws_user }}"
+    group: "{{ aws_user }}"
+    mode: 0700
+
+- name: Create the id_rsa
+  copy:
+    src: "id_rsa"
+    dest: "/opt/jenkins/.ssh/id_rsa"
+    owner: "{{ aws_user }}"
+    group: "{{ aws_user }}"
+    mode: 0600
+
+
+- name: Install required packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+     - "{{ packages }}"

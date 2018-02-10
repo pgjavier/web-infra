@@ -1,0 +1,5 @@
+---
+- include: jenkins.yml
+  when: "inventory_hostname in groups['tag_Name_jenkins_master'] | default([])"
+- include: jenkins_slave.yml
+  when: "inventory_hostname in groups['tag_Name_jenkins_slave'] | default([])"

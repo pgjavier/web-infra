@@ -1,0 +1,40 @@
+
+---
+
+    - name: Install prerequisites packages (RedHat/CentOS)
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - "{{ redhat_packages }}"
+      when: ansible_os_family == 'RedHat'
+
+    - name: Install prerequisites pip
+      easy_install:
+        name: pip
+
+    - name: Install prerequisites docker-py
+      pip:
+        name: docker-py
+        state: present
+
+    - name: Add repository for Docker CE
+      yum_repository:
+        name: docker-ce-stable
+        description: Docker CE Stable - x86_64
+        enabled: yes
+        baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
+        gpgkey: https://download.docker.com/linux/centos/gpg
+        gpgcheck: yes
+      when: ansible_os_family == 'RedHat'
+
+    - name: Install Docker CE
+      yum:
+        name: docker-ce
+        state: present
+
+    - name: Start Docker CE sevice
+      service:
+         name: docker
+         state: started
+         enabled: yes

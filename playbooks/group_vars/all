@@ -1,0 +1,13 @@
+# tag_Name_frontend.yml: Variables for the instances tagged as frontend
+---
+redhat_packages:
+  - wget
+  - yum-utils
+  - device-mapper-persistent-data
+  - lvm2
+  - python
+  - python-devel
+  - python-setuptools
+  - git
+aws_user: centos
+user_home: /home/centos

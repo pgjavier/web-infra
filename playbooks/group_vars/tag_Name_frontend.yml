@@ -1,0 +1,16 @@
+# tag_Name_frontend.yml: Variables for the instances tagged as frontend
+---
+frontend_www_path: /var/httpd/www
+frontend_project_path: /opt/jenkins/workspace/deploy-website
+redhat_packages:
+  - wget
+  - yum-utils
+  - device-mapper-persistent-data
+  - lvm2
+  - python
+  - python-devel
+  - python-setuptools
+  - git
+base_directories:
+  - "{{ frontend_www_path }}"
+app_repository: 'https://github.com/pgjavier/simple-web'

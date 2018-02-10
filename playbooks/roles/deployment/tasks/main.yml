@@ -1,0 +1,18 @@
+---
+    # Not necesary as it is gettign fetch from jenkins
+    # - name: fetching website code to servers
+    #   git:
+    #    repo: "{{ app_repository }}"
+    #    dest: "{{ frontend_project_path }}"
+    #    version: "{{ app_tag | default('HEAD') }}"
+    #    force: yes
+
+    - name: deploying website to httpd directory
+      synchronize:
+        src: "{{ frontend_project_path }}/"
+        dest: "{{ frontend_www_path }}"
+        delete: yes
+        rsync_opts:
+          - "--exclude=.git"
+          - "--exclude=README.md"
+      delegate_to: "{{ inventory_hostname }}"

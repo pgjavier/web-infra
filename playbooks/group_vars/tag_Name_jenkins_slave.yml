@@ -1,0 +1,8 @@
+# tag_Name_frontend.yml: Variables for the instances tagged as frontend
+---
+packages:
+  - ansible
+  - git
+  - java-1.8.0-openjdk
+base_directories:
+  - /opt/jenkins
