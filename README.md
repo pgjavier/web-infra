@@ -48,17 +48,17 @@
 
   Due to the delays of the starting the aws instances I decided to removed the code that executes ansible from terraform as it was failing sometimes, even adding some mechanims to try to avoid it. It needs to be trigger in this way:
 
-    ansible-playbook -u centos --private-key 'key/id_rsa.pub' playbooks/site.yml
+    ansible-playbook -u centos --private-key 'key/id_rsa' playbooks/site.yml
 
   The initial configuration of jekins needs to be manually done such as adding credentials. Also the configuration of webhooks in github is being done manually. With an own git server this part could be also automate.
 
   If in any moment it is need to lunch ansible configuration again, it can be done executing the following playbook:
 
-    ansible-playbook -u centos --private-key 'key/id_rsa.pub' playbooks/site.yml
+    ansible-playbook -u centos --private-key 'key/id_rsa' playbooks/site.yml
 
   To manually deploy the website code you can run:
 
-    ansible-playbook -u centos --private-key 'key/id_rsa.pub' playbooks/website-deploy.yml
+    ansible-playbook -u centos --private-key 'key/id_rsa' playbooks/website-deploy.yml
 
   In order to avoid down time to the customers the deployment of the code is setup to be done in serie, in this case doing first the 50% of the nodes before continuing with the rest.
 
