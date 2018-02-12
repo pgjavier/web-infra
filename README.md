@@ -8,9 +8,11 @@
 
   Prerequisites:
   In the computer executing this code requires the following package:
+  
     - git
     - ansible
     - terraform
+    - boto python
 
   Also it is need to setup AWS credentials in the ~/.aws/credentials file.
 
